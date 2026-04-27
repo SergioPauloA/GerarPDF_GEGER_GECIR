@@ -52,6 +52,8 @@ function generatePdf() {
         }
       }
 
+      ws.autoResizeRows(1, 25); // ajusta alturas das linhas para evitar espaços em branco no PDF
+
       var cnpj = ws.getRange(5,2).getValue().toString().replace(".","").replace(".","").replace("-","").replace("/","");
       var cnpjo = ws.getRange(5,2).getValue();
       var pdfName = "RATING DTVM DEB - CNPJ " + cnpj;
