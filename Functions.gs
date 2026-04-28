@@ -17,8 +17,7 @@ function novoForm() {
   var SS = SpreadsheetApp.getActiveSpreadsheet();
   var ws = SS.getSheetByName("PARECER");
     
-  ws.getRange(5,2).setFormula("=IFERROR(INDEX('CAIXA DE ENTRADA'!D:D,MATCH(B6,'CAIXA DE ENTRADA'!E:E,0)),\"vazio\")"); //CNPJ
-  ws.getRange(6,2).clearContent(); //Número do processo
+  ws.getRange(6,2).setValue(""); //Número do processo
   ws.getRange(14,1).setValue(""); //Parecer GECIR
   ws.getRange(27,2).setValue(0); //Ajuste de pontuação
   ws.getRange(33,2).setValue(""); //Corpo do email(+)
