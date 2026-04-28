@@ -17,7 +17,6 @@ function novoForm() {
   var SS = SpreadsheetApp.getActiveSpreadsheet();
   var ws = SS.getSheetByName("PARECER");
     
-  ws.getRange(5,2).setValue(""); //CNPJ
   ws.getRange(14,1).setValue(""); //Parecer GECIR
   ws.getRange(27,2).setValue(0); //Ajuste de pontuação
   ws.getRange(33,2).setValue(""); //Corpo do email(+)
