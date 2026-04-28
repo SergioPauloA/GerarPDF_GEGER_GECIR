@@ -17,6 +17,7 @@ function novoForm() {
   var SS = SpreadsheetApp.getActiveSpreadsheet();
   var ws = SS.getSheetByName("PARECER");
     
+  ws.getRange(5,2).setValue("vazio"); //CNPJ
   ws.getRange(6,2).setValue(""); //Número do processo
   ws.getRange(14,1).setValue(""); //Parecer GECIR
   ws.getRange(27,2).setValue(0); //Ajuste de pontuação
