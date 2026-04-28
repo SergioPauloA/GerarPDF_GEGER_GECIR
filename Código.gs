@@ -55,6 +55,7 @@ function generatePdf() {
       var cnpj = ws.getRange(5,2).getValue().toString().replace(".","").replace(".","").replace("-","").replace("/","");
       var cnpjo = ws.getRange(5,2).getValue();
       var pdfName = "RATING DTVM DEB - CNPJ " + cnpj;
+      ws.clearRowBreaks();
       var response = UrlFetchApp.fetch("https://docs.google.com/spreadsheets/d/"+ ssID + url_ext, options); // NEW CODE
       var blob = response.getBlob().setName(pdfName + '.pdf');
       var arquivo = DriveApp.createFile(blob);
