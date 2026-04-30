@@ -40,7 +40,7 @@ function generatePdf() {
         + '&gridlines=false'  // hide gridlines
         + '&fzr=false'       // do not repeat row headers (frozen rows) on each page
         + '&r1=' + 0
-        + '&r2=' + 24
+        + '&r2=' + 23
         + '&c1=' + 0
         + '&c2=' + 2
         + '&gid='+shID; // NEW CODE
