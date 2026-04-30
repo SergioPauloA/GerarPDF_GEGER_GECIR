@@ -86,25 +86,24 @@ function generatePdf() {
 
 function envioEmail(anexo,planilha,cnpj) {
   var destinatario = planilha.getRange("B31").getValue();
-  var copiaCarbono = planilha.getRange("B32").getValue();
   const assunto = "RATING DTVM DEB - CNPJ " + cnpj;
   var mensagem = wc.getRange("G2").getValue();
-  if (planilha.getRange("B33").getValue().toString() != ''){
-    mensagem = mensagem + '<br><br>' + planilha.getRange("B33").getValue().toString()
+  var corpoExtra = planilha.getRange("B32").getValue().toString();
+  if (corpoExtra != ''){
+    mensagem = mensagem + '<br><br>' + corpoExtra;
   }
   const assinatura = Gmail.Users.Settings.SendAs.list('me').sendAs.filter(function(account){if(account.isDefault){return true}})[0].signature;
   const email = GmailApp.createDraft(destinatario, assunto, '', {
-    cc: copiaCarbono,
     htmlBody: mensagem + '<br><br>' + assinatura,
     attachments: [DriveApp.getFileById(anexo.getId())]
   });
   
+  var mensagemPreview = mensagem.replace(/<br\s*\/?>/gi, '\n');
   var res = Browser.msgBox('Enviar Email', 
-                            `Para: ` + destinatario + '\\n' + 
-                            'CC: '+ copiaCarbono + '\\n' + 
-                            'Assunto: ' + assunto + '\\n' + 
-                            'Mensagem: ' + mensagem + '\\n' + '\\n' +
-                            'Anexos: '+ anexo.getName() + '\\n' + '\\n' + 
+                            'Para: ' + destinatario + '\n' + 
+                            'Assunto: ' + assunto + '\n' + 
+                            'Mensagem: ' + mensagemPreview + '\n\n' +
+                            'Anexos: '+ anexo.getName() + '\n\n' + 
                             'Deseja Enviar ?' , Browser.Buttons.YES_NO);
     if (res == 'yes'){
       email.send();
