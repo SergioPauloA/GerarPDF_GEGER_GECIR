@@ -90,7 +90,7 @@ function envioEmail(anexo,planilha,cnpj) {
   const assunto = "RATING DTVM DEB - CNPJ " + cnpj;
   var mensagem = wc.getRange("G2").getValue();
   if (planilha.getRange("B32").getValue().toString() != ''){
-    mensagem = mensagem + '<br><br>' + planilha.getRange("B33").getValue().toString()
+    mensagem = mensagem + '<br><br>' + planilha.getRange("B32").getValue().toString()
   }
   const assinatura = Gmail.Users.Settings.SendAs.list('me').sendAs.filter(function(account){if(account.isDefault){return true}})[0].signature;
   const email = GmailApp.createDraft(destinatario, assunto, '', {
