@@ -40,7 +40,7 @@ function generatePdf() {
         + '&gridlines=false'  // hide gridlines
         + '&fzr=false'       // do not repeat row headers (frozen rows) on each page
         + '&r1=' + 0
-        + '&r2=' + 24
+        + '&r2=' + 23
         + '&c1=' + 0
         + '&c2=' + 2
         + '&gid='+shID; // NEW CODE
@@ -55,7 +55,6 @@ function generatePdf() {
       var cnpj = ws.getRange(5,2).getValue().toString().replace(".","").replace(".","").replace("-","").replace("/","");
       var cnpjo = ws.getRange(5,2).getValue();
       var pdfName = "RATING DTVM DEB - CNPJ " + cnpj;
-      ws.clearRowBreaks();
       var response = UrlFetchApp.fetch("https://docs.google.com/spreadsheets/d/"+ ssID + url_ext, options); // NEW CODE
       var blob = response.getBlob().setName(pdfName + '.pdf');
       var arquivo = DriveApp.createFile(blob);
@@ -86,11 +85,11 @@ function generatePdf() {
 }
 
 function envioEmail(anexo,planilha,cnpj) {
-  var destinatario = planilha.getRange("B31").getValue();
-  var copiaCarbono = planilha.getRange("B32").getValue();
+  var destinatario = planilha.getRange("B30").getValue();
+  var copiaCarbono = planilha.getRange("B31").getValue();
   const assunto = "RATING DTVM DEB - CNPJ " + cnpj;
   var mensagem = wc.getRange("G2").getValue();
-  if (planilha.getRange("B33").getValue().toString() != ''){
+  if (planilha.getRange("B32").getValue().toString() != ''){
     mensagem = mensagem + '<br><br>' + planilha.getRange("B33").getValue().toString()
   }
   const assinatura = Gmail.Users.Settings.SendAs.list('me').sendAs.filter(function(account){if(account.isDefault){return true}})[0].signature;
